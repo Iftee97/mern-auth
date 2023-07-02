@@ -4,6 +4,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -17,6 +18,11 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors({
+  // origin: 'http://localhost:3000' || 'http://192.168.0.106:3000' || '*', // development
+  origin: 'https://mern-auth-jwt.vercel.app' || '*', // production
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+}))
 app.use('/api/users', userRoutes);
 
 if (process.env.NODE_ENV === 'production') {
