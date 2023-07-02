@@ -19,10 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-  // origin: 'http://localhost:3000' || 'http://192.168.0.106:3000' || '*', // development
-  origin: 'https://mern-auth-jwt.vercel.app' || '*', // production
+  // origin: 'http://localhost:3000' || '*', // frontend development server
+  origin: 'https://mern-auth-jwt.vercel.app' || '*', // frontend production server
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-}))
+}));
 app.use('/api/users', userRoutes);
 
 if (process.env.NODE_ENV === 'production') {
@@ -52,3 +52,5 @@ app.listen(port, () => {
 // POST /api/users/logout - Logout user and clear cookie
 // GET /api/users/profile - Get user profile
 // PUT /api/users/profile - Update profile
+
+// production server hosted on https://railway.app/
