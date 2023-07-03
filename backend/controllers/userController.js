@@ -12,26 +12,48 @@ const getAllUsers = asyncHandler(async (req, res) => {
 // @route   POST /api/users/auth
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
+  // const { email, password } = req.body;
+
+  // const user = await User.findOne({ email });
+  // const passwordsMatch = await bcrypt.compare(password, user.password);
+
+  // if (!user) {
+  //   res.status(404);
+  //   throw new Error('User not found');
+  // }
+  // if (user && passwordsMatch) {
+  //   generateToken(res, user._id);
+  //   res.status(201).json({
+  //     _id: user._id,
+  //     name: user.name,
+  //     email: user.email,
+  //   });
+  // } else {
+  //   res.status(401);
+  //   throw new Error('Invalid email or password');
+  // }
+
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-  const passwordsMatch = await bcrypt.compare(password, user.password);
-
+  console.log('user: >>>>>>>>', user);
   if (!user) {
     res.status(404);
     throw new Error('User not found');
   }
-  if (user && passwordsMatch) {
-    generateToken(res, user._id);
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-    });
-  } else {
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
     res.status(401);
-    throw new Error('Invalid email or password');
+    throw new Error('Invalid Credentials');
   }
+
+  generateToken(res, user._id);
+  res.json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+  });
 });
 
 // @desc    Register (Signup & Create) a new user
