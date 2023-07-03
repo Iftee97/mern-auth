@@ -37,7 +37,7 @@ app.use('/api/users', userRoutes);
 //   });
 // }
 app.get('/', (req, res) => {
-  res.json({ message: 'API running' });
+  res.json({ message: 'API is up and running' });
 });
 
 // error middlewares must go after all other routes
