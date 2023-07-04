@@ -116,10 +116,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 
     const updatedUser = await user.save();
+    const token = generateToken(res, updatedUser._id);
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      token,
     });
   } else {
     res.status(404);
