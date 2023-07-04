@@ -27,6 +27,7 @@ const protect = asyncHandler(async (req, res, next) => {
     return res.status(401).json({ error: 'authorization token required' })
   }
   const token = authorization.split(' ')[1];
+  console.log('token: >>>>>>>>', token);
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);

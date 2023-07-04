@@ -56,7 +56,7 @@ export default function Hero() {
                 </Button>
               </LinkContainer>
               <LinkContainer to='/register'>
-                <Button variant='info'>
+                <Button variant='dark'>
                   Register
                 </Button>
               </LinkContainer>

@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: 'https://mern-auth-production-5596.up.railway.app',
   prepareHeaders: (headers, { getState }) => {
     // const token = getState().token
-    const token = localStorage.getItem('token')
+    const token = JSON.parse(localStorage.getItem('token'))
     if (token) {
       headers.set('authorization', `Bearer ${token}`)
     }
