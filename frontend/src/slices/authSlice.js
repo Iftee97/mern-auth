@@ -5,7 +5,7 @@ const initialState = {
     ? JSON.parse(localStorage.getItem('userInfo'))
     : null,
   token: localStorage.getItem('token')
-    ? JSON.parse(localStorage.getItem('token')).token
+    ? JSON.parse(localStorage.getItem('token'))
     : null,
 }
 
