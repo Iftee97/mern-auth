@@ -21,8 +21,9 @@ const protect = asyncHandler(async (req, res, next) => {
   //   throw new Error('Not authorized, no token');
   // }
 
+  const token = req.cookies;
   const { authorization } = req.headers;
-  console.log('authorization: >>>>>>>>', authorization);
+  console.log({ token, authorization });
 });
 
 export {
