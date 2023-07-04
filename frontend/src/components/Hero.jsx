@@ -9,7 +9,8 @@ import Cookies from 'js-cookie'
 export default function Hero() {
   const dispatch = useDispatch()
   const { userInfo } = useSelector(state => state.auth)
-  // console.log('userInfo: >>>>>>>>>', userInfo)
+  const { token } = useSelector(state => state.auth)
+  console.log({ userInfo, token })
   const [logoutApiCall] = useLogoutMutation()
 
   const logoutHandler = async () => {
