@@ -1,7 +1,8 @@
 import { fetchBaseQuery, createApi } from '@reduxjs/toolkit/query/react'
 
-const baseQuery = fetchBaseQuery({ baseUrl: 'https://mern-auth-production-5596.up.railway.app' }) // keep empty string in dev because we're using a proxy in vite config
-// https://mern-auth-production-5596.up.railway.app in prod
+// keep empty string '' in dev because we're using a proxy in vite config
+// but use baeUrl: 'https://mern-auth-production-5596.up.railway.app' in prod
+const baseQuery = fetchBaseQuery({ baseUrl: 'https://mern-auth-production-5596.up.railway.app' })
 
 export const apiSlice = createApi({
   reducerPath: "api",
