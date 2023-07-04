@@ -15,7 +15,7 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-  console.log('user: >>>>>>>>', user);
+  // console.log('user: >>>>>>>>', user);
   if (!user) {
     res.status(404);
     throw new Error('User not found');

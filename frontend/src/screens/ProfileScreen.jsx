@@ -6,7 +6,6 @@ import { setCredentials } from '../slices/authSlice'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
-import Cookies from 'js-cookie'
 
 export default function ProfileScreen() {
   const [email, setEmail] = useState('')
@@ -16,7 +15,6 @@ export default function ProfileScreen() {
   const { userInfo } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const [updateProfile, { isLoading }] = useUpdateUserMutation()
-  const token = Cookies.get('jwt')
 
   useEffect(() => {
     setName(userInfo.name)
@@ -34,7 +32,6 @@ export default function ProfileScreen() {
           name,
           email,
           password,
-          token,
         }).unwrap()
         console.log('updateProfile res: >>>>>>>>>> ', res)
         dispatch(setCredentials({ ...res }))
