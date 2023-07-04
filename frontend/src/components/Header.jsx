@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLogoutMutation } from '../slices/usersApiSlice'
 import { logout } from '../slices/authSlice'
+import Cookies from 'js-cookie'
 
 export default function Header() {
   const navigate = useNavigate()
@@ -16,6 +17,7 @@ export default function Header() {
     try {
       await logoutApiCall().unwrap()
       dispatch(logout())
+      Cookies.remove('jwt')
       navigate('/')
     } catch (err) {
       console.error(err)

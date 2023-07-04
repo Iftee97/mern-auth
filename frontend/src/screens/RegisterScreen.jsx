@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRegisterMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
 
 export default function RegisterScreen() {
   const [name, setName] = useState('')
@@ -31,6 +32,8 @@ export default function RegisterScreen() {
     } else {
       try {
         const res = await register({ name, email, password }).unwrap()
+        console.log('register res: >>>>>>>>>> ', res)
+        Cookies.set('jwt', res.token, { expires: 30 })
         dispatch(setCredentials({ ...res }))
       } catch (err) {
         console.log('err: >>>>>>>>>> ', err)

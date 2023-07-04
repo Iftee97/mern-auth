@@ -33,6 +33,7 @@ export default function ProfileScreen() {
           email,
           password,
         }).unwrap()
+        console.log('updateProfile res: >>>>>>>>>> ', res)
         dispatch(setCredentials({ ...res }))
         toast.success('Profile updated successfully')
       } catch (err) {

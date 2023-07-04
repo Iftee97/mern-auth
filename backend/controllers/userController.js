@@ -27,11 +27,13 @@ const authUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid Credentials');
   }
 
-  generateToken(res, user._id);
+  const token = generateToken(res, user._id);
+  console.log('login token: >>>>>>>>', token);
   res.json({
     _id: user._id,
     name: user.name,
     email: user.email,
+    token,
   });
 });
 
@@ -56,11 +58,13 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
   });
   if (user) {
-    generateToken(res, user._id);
+    const token = generateToken(res, user._id);
+    console.log('register token: >>>>>>>>', token);
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
+      token,
     });
   } else {
     res.status(400);
@@ -83,16 +87,6 @@ const logoutUser = (req, res) => {
 // @route   GET /api/users/profile
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
-  // if (req.user) {
-  //   res.status(200).json({
-  //     _id: req.user._id,
-  //     name: req.user.name,
-  //     email: req.user.email,
-  //   });
-  // } else {
-  //   res.status(404);
-  //   throw new Error('User not found');
-  // }
   const user = await User.findById(req.user._id);
   if (user) {
     res.json({

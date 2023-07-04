@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('')
@@ -26,6 +27,8 @@ export default function LoginScreen() {
     e.preventDefault()
     try {
       const res = await login({ email, password }).unwrap()
+      console.log('login res: >>>>>>>>>> ', res)
+      Cookies.set('jwt', res.token, { expires: 30 })
       dispatch(setCredentials({ ...res }))
     } catch (err) {
       console.log('err: >>>>>>>>>> ', err)
