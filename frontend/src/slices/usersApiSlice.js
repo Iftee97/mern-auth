@@ -3,6 +3,13 @@ const USERS_URL = '/api/users'
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getAllUsers: builder.query({
+      query: () => ({
+        url: `${USERS_URL}`,
+        method: 'GET',
+      }),
+      providesTags: ['User'],
+    }),
     register: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}`,
@@ -29,12 +36,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-    }),
-    getAllUsers: builder.query({
-      query: () => ({
-        url: `${USERS_URL}`,
-        method: 'GET',
-      }),
+      invalidatesTags: ['User'],
     }),
   }),
 })
