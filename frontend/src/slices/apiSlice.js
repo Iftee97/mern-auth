@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: '', // in dev
-  baseUrl: 'https://mern-auth-production-5596.up.railway.app', // in prod
+  baseUrl: 'https://mern-auth-backend-server.onrender.com', // in prod
   prepareHeaders: (headers, { getState }) => {
     // const token = getState().auth.token
     // const token = JSON.parse(localStorage.getItem('token'))
