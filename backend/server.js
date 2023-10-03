@@ -47,4 +47,4 @@ app.listen(port, () => {
 // GET /api/users/profile - Get user profile
 // PUT /api/users/profile - Update profile
 
-// production server hosted on https://railway.app/
+// production server hosted on render
