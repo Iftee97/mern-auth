@@ -11,8 +11,8 @@ export default function Hero() {
   const [skip, setSkip] = useState(true)
 
   const dispatch = useDispatch()
-  const { userInfo, token } = useSelector(state => state.auth)
-  // console.log({ userInfo, token })
+  const { userInfo } = useSelector(state => state.auth)
+  // console.log({ userInfo })
   const [logoutApiCall] = useLogoutMutation()
   // console.log('useGetAllUsersQuery() >>>>>>>>>>>', useGetAllUsersQuery())
   const { data: allUsers, isLoading } = useGetAllUsersQuery(undefined, {

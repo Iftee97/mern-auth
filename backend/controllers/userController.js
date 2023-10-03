@@ -29,6 +29,13 @@ const authUser = asyncHandler(async (req, res) => {
 
   const token = generateToken(res, user._id);
   console.log('login token: >>>>>>>>', token);
+
+  res.cookie('jwt', token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+  });
+
   res.json({
     _id: user._id,
     name: user.name,
@@ -60,6 +67,13 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {
     const token = generateToken(res, user._id);
     console.log('register token: >>>>>>>>', token);
+
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    });
+
     res.status(201).json({
       _id: user._id,
       name: user.name,

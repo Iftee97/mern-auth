@@ -4,9 +4,7 @@ import Cookies from 'js-cookie'
 const baseQuery = fetchBaseQuery({
   // baseUrl: '', // in dev
   baseUrl: 'https://mern-auth-backend-server.onrender.com', // in prod
-  prepareHeaders: (headers, { getState }) => {
-    // const token = getState().auth.token
-    // const token = JSON.parse(localStorage.getItem('token'))
+  prepareHeaders: (headers) => {
     const token = Cookies.get('jwt')
     if (token) {
       headers.set('authorization', `Bearer ${token}`)
