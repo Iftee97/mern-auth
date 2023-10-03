@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'http://localhost:4000', // dev backend server
-        target: 'https://mern-auth-production-5596.up.railway.app/', // prod backend server
+        target: 'https://mern-auth-backend-server.onrender.com', // prod backend server
         changeOrigin: true,
       },
     },
