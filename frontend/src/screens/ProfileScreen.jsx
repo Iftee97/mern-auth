@@ -45,6 +45,11 @@ export default function ProfileScreen() {
   return (
     <FormContainer>
       <h1>Update Profile</h1>
+      <pre style={{ margin: '1rem 0' }}>
+        <code>
+          {JSON.stringify(userInfo, null, 2)}
+        </code>
+      </pre>
       <Form onSubmit={submitHandler}>
         <Form.Group className='my-2' controlId='name'>
           <Form.Label>Name</Form.Label>
